@@ -1,20 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Products from './pages/Products';
-import Clients from './pages/Clients';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
 import Suppliers from './pages/Suppliers';
-import Orders from './pages/Orders';
-import Transactions from './pages/Transactions';
+import Clients from './pages/Clients';
 
 const App = () => {
+  const isAuthenticated = !!localStorage.getItem('token');
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/clients" element={<Clients />} />
-        <Route path="/suppliers" element={<Suppliers />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/suppliers"
+          element={isAuthenticated ? <Suppliers /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/clients"
+          element={isAuthenticated ? <Clients /> : <Navigate to="/login" />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );
