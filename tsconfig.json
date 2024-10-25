@@ -1,4 +1,14 @@
 {
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
