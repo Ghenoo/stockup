@@ -4,11 +4,12 @@ import Suppliers from './pages/Suppliers';
 import Clients from './pages/Clients';
 
 const App = () => {
-  const isAuthenticated = !!localStorage.getItem('token');
+  const isAuthenticated = true; 
 
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/suppliers"
@@ -18,7 +19,6 @@ const App = () => {
           path="/clients"
           element={isAuthenticated ? <Clients /> : <Navigate to="/login" />}
         />
-        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );
