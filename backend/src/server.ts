@@ -1,9 +1,16 @@
-import 'dotenv/config'; 
+import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import { router as apiRouter } from './routes/api';
 import { connectDb, createUserTable } from './models/userModel';
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true, 
+}));
+
 app.use(express.json());
 
 connectDb().then(() => {
